@@ -57,7 +57,7 @@ public class MySqlCategoryDao extends MySqlDaoBase implements CategoryDao
     @Override
     public Category getById(int categoryId) {
         // get category by id
-        String query = "SELECT * FROM categories WHERE categoryId = ?";
+        String query = "SELECT * FROM categories WHERE category_id = ?";
 
         try(Connection connection = getConnection()) {
 
@@ -139,7 +139,7 @@ public class MySqlCategoryDao extends MySqlDaoBase implements CategoryDao
     @Override
     public void delete(int categoryId) {
         // delete category
-        String query = "DELETE FROM categories WHERE categoryId = ?";
+        String query = "DELETE FROM categories WHERE category_id = ?";
 
         try(Connection connection = getConnection()) {
 
