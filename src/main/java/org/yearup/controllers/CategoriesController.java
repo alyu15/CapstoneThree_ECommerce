@@ -1,7 +1,10 @@
 package org.yearup.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import org.yearup.data.CategoryDao;
 import org.yearup.data.ProductDao;
 import org.yearup.models.Category;
@@ -13,7 +16,7 @@ import java.util.List;
 @RestController
 // add the annotation to make this controller the endpoint for the following url
     // http://localhost:8080/categories
-@RequestMapping("categories")
+@RequestMapping("/categories")
 // add annotation to allow cross site origin requests
 @CrossOrigin
 
@@ -24,14 +27,27 @@ public class CategoriesController
 
 
     // create an Autowired controller to inject the categoryDao and ProductDao
+    @Autowired
+    public CategoriesController(CategoryDao categoryDao) {
+        this.categoryDao = categoryDao;
+    }
 
     // add the appropriate annotation for a get action
     @GetMapping("")
+    @PreAuthorize("permitAll()")
     public List<Category> getAll(@RequestParam(name = "name", required = false) String name,
                                  @RequestParam(name = "description", required = false) String description)
     {
         // find and return all categories
-        return null;
+
+        try{
+
+            return categoryDao.getAllCategories(name, description);
+
+        } catch(Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Oops... our bad.");
+        }
+
     }
 
     // add the appropriate annotation for a get action
@@ -39,7 +55,21 @@ public class CategoriesController
     public Category getById(@PathVariable int id)
     {
         // get the category by id
-        return null;
+
+        try{
+
+            Category category = categoryDao.getById(id);
+
+            if(category == null) {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+            }
+
+            return category;
+
+        } catch(Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Oops... our bad.");
+        }
+
     }
 
     // the url to return all products in category 1 would look like this
@@ -48,7 +78,19 @@ public class CategoriesController
     public List<Product> getProductsById(@PathVariable int categoryId)
     {
         // get a list of product by categoryId
-        return null;
+        try {
+
+            Category category = categoryDao.getById(categoryId);
+
+            if(category == null) {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+            }
+
+            return productDao.listByCategoryId(categoryId);
+
+        } catch(Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Oops... our bad.");
+        }
     }
 
     // add annotation to call this method for a POST action
@@ -58,7 +100,14 @@ public class CategoriesController
     public Category addCategory(@RequestBody Category category)
     {
         // insert the category
-        return null;
+
+        try {
+
+            return categoryDao.create(category);
+
+        } catch(Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Oops... our bad.");
+        }
     }
 
     // add annotation to call this method for a PUT (update) action - the url path must include the categoryId
@@ -68,6 +117,14 @@ public class CategoriesController
     public void updateCategory(@PathVariable int id, @RequestBody Category category)
     {
         // update the category by id
+
+        try {
+
+            categoryDao.update(id, category);
+
+        } catch(Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Oops... our bad.");
+        }
     }
 
 
@@ -78,5 +135,19 @@ public class CategoriesController
     public void deleteCategory(@PathVariable int id)
     {
         // delete the category by id
+
+        try {
+
+            Category category = categoryDao.getById(id);
+
+            if(category == null) {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+            }
+
+            categoryDao.delete(id);
+
+        } catch(Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Oops... our bad.");
+        }
     }
 }

@@ -26,19 +26,20 @@ public class MySqlCategoryDao extends MySqlDaoBase implements CategoryDao
         // get all categories
         List<Category> categories = new ArrayList<>();
 
-        String query = "SELECT * FROM categories" +
-                "WHERE (name LIKE ?)" +
-                "AND (description LIKE ?)";
+        String query = "SELECT * FROM categories " +
+                "WHERE name LIKE ?" +
+                "AND description LIKE ?";
 
         String nameToSearch = name == null ? "%" : name;
-        String descriptionToSearch = description == null ? "%" : description;
+        String descriptionToSearch = description == null ? "%": description;
 
         try(Connection connection = getConnection()) {
 
             PreparedStatement preparedStatement = connection.prepareStatement(query);
 
-            preparedStatement.setString(1, "%" + nameToSearch + "%");
-            preparedStatement.setString(2, "%" + descriptionToSearch + "%");
+            preparedStatement.setString(1, nameToSearch);
+            preparedStatement.setString(2, descriptionToSearch);
+
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
