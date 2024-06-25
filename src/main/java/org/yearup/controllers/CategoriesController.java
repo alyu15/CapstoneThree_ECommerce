@@ -28,8 +28,9 @@ public class CategoriesController
 
     // create an Autowired controller to inject the categoryDao and ProductDao
     @Autowired
-    public CategoriesController(CategoryDao categoryDao) {
+    public CategoriesController(CategoryDao categoryDao, ProductDao productDao) {
         this.categoryDao = categoryDao;
+        this.productDao = productDao;
     }
 
     // add the appropriate annotation for a get action
@@ -52,6 +53,7 @@ public class CategoriesController
 
     // add the appropriate annotation for a get action
     @GetMapping("{id}")
+    @PreAuthorize("permitAll()")
     public Category getById(@PathVariable int id)
     {
         // get the category by id
@@ -80,12 +82,12 @@ public class CategoriesController
     {
         // get a list of product by categoryId
         try {
-
             return productDao.listByCategoryId(categoryId);
 
         } catch(Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Oops... our bad.");
         }
+
     }
 
     // add annotation to call this method for a POST action
