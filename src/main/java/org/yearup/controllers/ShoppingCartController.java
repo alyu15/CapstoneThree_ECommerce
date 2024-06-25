@@ -34,8 +34,7 @@ public class ShoppingCartController {
     }
 
     // each method in this controller requires a Principal object as a parameter
-    public ShoppingCart getCart(Principal principal)
-    {
+    public ShoppingCart getCart(Principal principal) {
         try
         {
             int userId = getUserId(principal);
