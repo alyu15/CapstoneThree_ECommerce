@@ -24,8 +24,12 @@ public class MySqlShoppingCartDao extends MySqlDaoBase implements ShoppingCartDa
 
         ShoppingCart shoppingCart = new ShoppingCart();
 
-        String query = "SELECT * FROM shopping_cart WHERE user_id = ?";
+        String query = "SELECT * FROM shopping_cart AS s " +
+                "JOIN products AS p " +
+                "ON p.product_id = s.product_id " +
+                "WHERE user_id = ?";
 
+        System.out.println(userId);
         try(Connection connection = getConnection()) {
 
             PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -38,7 +42,6 @@ public class MySqlShoppingCartDao extends MySqlDaoBase implements ShoppingCartDa
                 ShoppingCartItem item = new ShoppingCartItem();
 
                 item.setProduct(MySqlProductDao.mapRow(resultSet));
-                item.setQuantity(resultSet.getInt("quantity"));
 
                 shoppingCart.add(item);
 
@@ -52,7 +55,7 @@ public class MySqlShoppingCartDao extends MySqlDaoBase implements ShoppingCartDa
     }
 
     @Override
-    public ShoppingCart addProductToCart(int userId, int productId) {
+    public void addProductToCart(int userId, int productId) {
 
         ShoppingCart shoppingCart = getByUserId(userId);
 
@@ -65,13 +68,13 @@ public class MySqlShoppingCartDao extends MySqlDaoBase implements ShoppingCartDa
             preparedStatement.setInt(2, productId);
             preparedStatement.setInt(3, 1);
 
-            preparedStatement.executeQuery();
+            preparedStatement.executeUpdate();
 
         } catch(SQLException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
-        return shoppingCart;
+
     }
 
     @Override
@@ -101,7 +104,7 @@ public class MySqlShoppingCartDao extends MySqlDaoBase implements ShoppingCartDa
     @Override
     public void emptyCart(int userId) {
 
-        String query = "DELETE FROM shopping_cart WHERE userId = ?";
+        String query = "DELETE FROM shopping_cart WHERE user_Id = ?";
 
         try(Connection connection = getConnection()) {
 
@@ -116,4 +119,5 @@ public class MySqlShoppingCartDao extends MySqlDaoBase implements ShoppingCartDa
         }
 
     }
+
 }

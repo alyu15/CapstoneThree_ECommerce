@@ -18,7 +18,7 @@ import java.security.Principal;
 @RestController
 @RequestMapping("cart")
 // only logged in users should have access to these actions
-@PreAuthorize("isAuthenticated()")
+@PreAuthorize("hasRole('ROLE_USER')")
 
 public class ShoppingCartController {
     // a shopping cart requires
@@ -34,15 +34,19 @@ public class ShoppingCartController {
     }
 
     // each method in this controller requires a Principal object as a parameter
+    @GetMapping("")
     public ShoppingCart getCart(Principal principal) {
-        try
-        {
+
+        System.out.println(principal);
+        try {
+
             int userId = getUserId(principal);
 
             // use the shoppingcartDao to get all items in the cart and return the cart
             return shoppingCartDao.getByUserId(userId);
 
         } catch(Exception e) {
+            e.printStackTrace();
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Oops... our bad.");
         }
     }
@@ -50,13 +54,13 @@ public class ShoppingCartController {
     // add a POST method to add a product to the cart - the url should be
     @PostMapping("/products/{productId}")
     // https://localhost:8080/cart/products/15 (15 is the productId to be added
-    public ShoppingCart addProductToCart(Principal principal, @PathVariable int productId) {
+    public void addProductToCart(Principal principal, @PathVariable int productId) {
 
         try {
 
             int userId = getUserId(principal);
 
-            return shoppingCartDao.addProductToCart(userId, productId);
+            shoppingCartDao.addProductToCart(userId, productId);
 
         } catch(Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Oops... our bad.");

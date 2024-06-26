@@ -20,8 +20,8 @@ import java.util.List;
 // add annotation to allow cross site origin requests
 @CrossOrigin
 
-public class CategoriesController
-{
+public class CategoriesController {
+
     private CategoryDao categoryDao;
     private ProductDao productDao;
 
@@ -54,8 +54,8 @@ public class CategoriesController
     // add the appropriate annotation for a get action
     @GetMapping("{id}")
     @PreAuthorize("permitAll()")
-    public Category getById(@PathVariable int id)
-    {
+    public Category getById(@PathVariable int id) {
+
         // get the category by id
 
         try{
@@ -78,8 +78,8 @@ public class CategoriesController
     // https://localhost:8080/categories/1/products
     @GetMapping("/{categoryId}/products")
     @PreAuthorize("permitAll()")
-    public List<Product> getProductsById(@PathVariable int categoryId)
-    {
+    public List<Product> getProductsById(@PathVariable int categoryId) {
+
         // get a list of product by categoryId
         try {
             return productDao.listByCategoryId(categoryId);
@@ -94,8 +94,8 @@ public class CategoriesController
     // add annotation to ensure that only an ADMIN can call this function
     @PostMapping()
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public Category addCategory(@RequestBody Category category)
-    {
+    public Category addCategory(@RequestBody Category category) {
+
         // insert the category
 
         try {
@@ -111,8 +111,8 @@ public class CategoriesController
     // add annotation to ensure that only an ADMIN can call this function
     @PutMapping("{categoryId}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public void updateCategory(@PathVariable int id, @RequestBody Category category)
-    {
+    public void updateCategory(@PathVariable int id, @RequestBody Category category) {
+
         // update the category by id
 
         try {
@@ -129,8 +129,7 @@ public class CategoriesController
     // add annotation to ensure that only an ADMIN can call this function
     @DeleteMapping("{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public void deleteCategory(@PathVariable int id)
-    {
+    public void deleteCategory(@PathVariable int id) {
         // delete the category by id
 
         try {
