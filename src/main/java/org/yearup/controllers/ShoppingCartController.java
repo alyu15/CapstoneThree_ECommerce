@@ -17,9 +17,9 @@ import java.security.Principal;
 // convert this class to a REST controller
 @RestController
 @RequestMapping("cart")
+@CrossOrigin
 // only logged in users should have access to these actions
 @PreAuthorize("hasRole('ROLE_USER')")
-@CrossOrigin
 
 public class ShoppingCartController {
     // a shopping cart requires
