@@ -54,13 +54,23 @@ public class ShoppingCartController {
     // add a POST method to add a product to the cart - the url should be
     @PostMapping("/products/{productId}")
     // https://localhost:8080/cart/products/15 (15 is the productId to be added
-    public void addProductToCart(Principal principal, @PathVariable int productId) {
+    public ShoppingCart addProductToCart(Principal principal, @PathVariable int productId) {
 
         try {
 
             int userId = getUserId(principal);
+            ShoppingCart shoppingCart = getCart(principal);
+
+            for (ShoppingCartItem item : shoppingCart.getItems().values()) {
+                if (item.getProductId() == productId) {
+                    shoppingCartDao.updateProductInCart(userId, productId, item);
+                    return getCart(principal);
+                }
+            }
 
             shoppingCartDao.addProductToCart(userId, productId);
+
+            return getCart(principal);
 
         } catch(Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Oops... our bad.");
