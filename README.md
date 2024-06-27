@@ -1,5 +1,12 @@
 # EasyShop E-Commerce Spring Boot API
 
+## Table of Contents
+- [Project Description](https://github.com/alyu15/CapstoneThree_ECommerce?tab=readme-ov-file#project-description)
+- [Home Screen](https://github.com/alyu15/CapstoneThree_ECommerce?tab=readme-ov-file#home-screen)
+- [User Profile](https://github.com/alyu15/CapstoneThree_ECommerce?tab=readme-ov-file#user-profile)
+- [Admin Profile](https://github.com/alyu15/CapstoneThree_ECommerce?tab=readme-ov-file#admin-profile)
+- [Interesting Piece of Code](https://github.com/alyu15/CapstoneThree_ECommerce?tab=readme-ov-file#interesting-piece-of-code)
+
 ## Project Description
 
 With this application, the user is able to utilize both a web browser and Postman to navigate through the online store "EasyShop"
@@ -7,7 +14,7 @@ and have the options to:
 
 - View all products
 - View all categories
-- Filter through products based on price
+- Filter through products
 
 Additionally, the user will be able to log in to the website where they will be able to:
 
@@ -36,7 +43,7 @@ which will then be applied and reflected in realtime through the displayed produ
 ><details>
 ><summary> Home Screen </summary>
 >
-> IMAGE HERE
+> ![HomeScreen](https://github.com/alyu15/CapstoneThree_ECommerce/blob/01afcd71944ff144b9bf8310a55ffe93d5f6b6ec/images/HomeScreen.JPG)
 >
 ></details>
 
@@ -46,25 +53,25 @@ which will then be applied and reflected in realtime through the displayed produ
 >><details>
 >><summary> Filtering By Category </summary>
 >>
->>IMAGE HERE
+>> ![CategoryFilter](https://github.com/alyu15/CapstoneThree_ECommerce/blob/01afcd71944ff144b9bf8310a55ffe93d5f6b6ec/images/CategoryFilter.JPG)
 >></details>
 >
 >><details>
 >><summary> Filtering By Price </summary>
 >>
->>IMAGE HERE
+>> ![PriceFilter](https://github.com/alyu15/CapstoneThree_ECommerce/blob/01afcd71944ff144b9bf8310a55ffe93d5f6b6ec/images/PriceFilter.JPG)
 >></details>
 >
 >><details>
 >><summary> Filtering By Color </summary>
 >>
->> IMAGE HERE
+>> ![ColorFilter](https://github.com/alyu15/CapstoneThree_ECommerce/blob/01afcd71944ff144b9bf8310a55ffe93d5f6b6ec/images/ColorFilter.JPG)
 >></details>
 >
 >><details>
 >><summary> Applying All Filters </summary>
 >>
->> IMAGE HERE
+>> ![AllFilters](https://github.com/alyu15/CapstoneThree_ECommerce/blob/01afcd71944ff144b9bf8310a55ffe93d5f6b6ec/images/AllFilters.JPG)
 >></details>
 ></details>
 
@@ -82,13 +89,13 @@ in their username and password. Once they have successfully logged in, they are 
 >><details>
 >><summary> Login Prompt </summary>
 >>
->> IMAGE HERE
+>> ![LoginPrompt](https://github.com/alyu15/CapstoneThree_ECommerce/blob/01afcd71944ff144b9bf8310a55ffe93d5f6b6ec/images/LoggingIn.JPG)
 >></details>
 >
 >><details>
 >><summary> After Logging In </summary>
 >>
->> IMAGE HERE
+>> ![AfterLogin](https://github.com/alyu15/CapstoneThree_ECommerce/blob/01afcd71944ff144b9bf8310a55ffe93d5f6b6ec/images/AfterLoggingIn.JPG)
 >></details>
 ></details>
 
@@ -98,22 +105,22 @@ in their username and password. Once they have successfully logged in, they are 
 >><details>
 >><summary> Before Modifying Profile </summary>
 >>
->> IMAGE HERE
+>> ![UnmodifiedProfile](https://github.com/alyu15/CapstoneThree_ECommerce/blob/01afcd71944ff144b9bf8310a55ffe93d5f6b6ec/images/ProfilePage.JPG)
 >>
 >></details>
 >
 >><details>
 >><summary> After Modifying Profile </summary>
 >>
->> IMAGE HERE
+>> ![ModifiedProfile](https://github.com/alyu15/CapstoneThree_ECommerce/blob/01afcd71944ff144b9bf8310a55ffe93d5f6b6ec/images/UpdatedProfile.JPG)
 >>
 ></details>
 ></details>
 
 ><details>
-><summary> Adding a Product to cart </summary>
+><summary> After Adding a Product to cart </summary>
 >
-> IMAGE HERE
+> ![AddProductToCart](https://github.com/alyu15/CapstoneThree_ECommerce/blob/01afcd71944ff144b9bf8310a55ffe93d5f6b6ec/images/ShoppingCart.JPG)
 >
 ></details>
 
@@ -130,20 +137,20 @@ Using Postman, the user is able to modify the online store by:
 >><details>
 >><summary> New Category On Postman </summary>
 >>
->> IMAGE HERE
+>> ![NewCategoryOnPostman](https://github.com/alyu15/CapstoneThree_ECommerce/blob/01afcd71944ff144b9bf8310a55ffe93d5f6b6ec/images/AddCategory.JPG)
 >></details>
 >
 >><details>
 >><summary> New Category On Website </summary>
 >>
->> IMAGE HERE
+>> ![NewCategoryOnWebsite](https://github.com/alyu15/CapstoneThree_ECommerce/blob/01afcd71944ff144b9bf8310a55ffe93d5f6b6ec/images/NewCategory.JPG)
 ></details>
 ></details>
 
 ><details>
 ><summary> Removing a Category </summary>
 >
-> IMAGE HERE
+> ![DeleteCategory](https://github.com/alyu15/CapstoneThree_ECommerce/blob/01afcd71944ff144b9bf8310a55ffe93d5f6b6ec/images/DeleteCategory.JPG)
 >
 ></details>
 
@@ -169,7 +176,7 @@ able to easily use that in order to achieve what I was looking for.
 
 <br>
 <div align="center">
-<b>Thank you for taking the time out to check out my application!</b>
+<b>Thank you for taking the time to check out my application!</b>
 
-
+![Exit](https://github.com/alyu15/CapstoneThree_ECommerce/blob/01afcd71944ff144b9bf8310a55ffe93d5f6b6ec/images/Exit.JPG)
 </div>
