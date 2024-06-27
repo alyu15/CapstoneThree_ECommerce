@@ -75,6 +75,8 @@ which will then be applied and reflected in realtime through the displayed produ
 >></details>
 ></details>
 
+[Back to the Top](https://github.com/alyu15/CapstoneThree_ECommerce?tab=readme-ov-file#table-of-contents)
+
 ## User Profile
 
 Additionally, there is a login option available on the right side of the home page, which will prompt the user to enter
@@ -124,6 +126,8 @@ in their username and password. Once they have successfully logged in, they are 
 >
 ></details>
 
+[Back to the Top](https://github.com/alyu15/CapstoneThree_ECommerce?tab=readme-ov-file#table-of-contents)
+
 ## Admin Profile
 
 Using Postman, the user is able to modify the online store by:
@@ -154,6 +158,8 @@ Using Postman, the user is able to modify the online store by:
 >
 ></details>
 
+[Back to the Top](https://github.com/alyu15/CapstoneThree_ECommerce?tab=readme-ov-file#table-of-contents)
+
 ## Interesting Piece of Code
 
 ```
@@ -173,6 +179,8 @@ utilizing the 'getById' method in the ShoppingCartDAO in order to be able to ret
 from their shopping cart in order to display the product information out back at them. I was running into an issue where
 I wasn't sure how to display the product details until I remembered about the different 'JOIN' clause in MySql and was
 able to easily use that in order to achieve what I was looking for.
+
+[Back to the Top](https://github.com/alyu15/CapstoneThree_ECommerce?tab=readme-ov-file#table-of-contents)
 
 <br>
 <div align="center">
