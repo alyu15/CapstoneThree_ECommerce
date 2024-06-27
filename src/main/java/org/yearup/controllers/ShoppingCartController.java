@@ -19,6 +19,7 @@ import java.security.Principal;
 @RequestMapping("cart")
 // only logged in users should have access to these actions
 @PreAuthorize("hasRole('ROLE_USER')")
+@CrossOrigin
 
 public class ShoppingCartController {
     // a shopping cart requires
@@ -53,22 +54,26 @@ public class ShoppingCartController {
 
     // add a POST method to add a product to the cart - the url should be
     @PostMapping("/products/{productId}")
-    // https://localhost:8080/cart/products/15 (15 is the productId to be added
+    // https://localhost:8080/cart/products/15 (15 is the productId to be added)
     public ShoppingCart addProductToCart(Principal principal, @PathVariable int productId) {
 
         try {
 
             int userId = getUserId(principal);
             ShoppingCart shoppingCart = getCart(principal);
+            boolean productExistsInCart = false;
 
             for (ShoppingCartItem item : shoppingCart.getItems().values()) {
                 if (item.getProductId() == productId) {
-                    shoppingCartDao.updateProductInCart(userId, productId, item);
-                    return getCart(principal);
+                    shoppingCartDao.incrementProductInCart(userId, productId, item);
+                    productExistsInCart = true;
+                    break;
                 }
             }
 
-            shoppingCartDao.addProductToCart(userId, productId);
+            if (!productExistsInCart) {
+                shoppingCartDao.addProductToCart(userId, productId);
+            }
 
             return getCart(principal);
 
@@ -82,13 +87,13 @@ public class ShoppingCartController {
     // https://localhost:8080/cart/products/15 (15 is the productId to be updated)
     @PutMapping("/products/{productId}")
     // the BODY should be a ShoppingCartItem - quantity is the only value that will be updated
-    public void updateProductInCart(Principal principal, @PathVariable int productId, @RequestBody ShoppingCartItem shoppingCartItem) {
+    public void incrementProductInCart(Principal principal, @PathVariable int productId, @RequestBody ShoppingCartItem item) {
 
         try {
 
             int userId = getUserId(principal);
 
-            shoppingCartDao.updateProductInCart(userId, productId, shoppingCartItem);
+            shoppingCartDao.incrementProductInCart(userId, productId, item);
 
         } catch(Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Oops... our bad.");
