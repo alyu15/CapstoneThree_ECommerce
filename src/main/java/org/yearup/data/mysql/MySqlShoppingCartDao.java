@@ -34,16 +34,16 @@ public class MySqlShoppingCartDao extends MySqlDaoBase implements ShoppingCartDa
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, userId);
 
-            ResultSet resultSet = preparedStatement.executeQuery();
+            try(ResultSet resultSet = preparedStatement.executeQuery()) {
 
-            while(resultSet.next()) {
+                while (resultSet.next()) {
 
-                ShoppingCartItem item = new ShoppingCartItem();
+                    ShoppingCartItem item = new ShoppingCartItem();
 
-                item.setProduct(MySqlProductDao.mapRow(resultSet));
+                    item.setProduct(MySqlProductDao.mapRow(resultSet));
 
-                shoppingCart.add(item);
-
+                    shoppingCart.add(item);
+                }
             }
 
         } catch(SQLException e) {
@@ -79,14 +79,15 @@ public class MySqlShoppingCartDao extends MySqlDaoBase implements ShoppingCartDa
 
         ShoppingCart shoppingCart = getByUserId(userId);
 
-        String query = "UPDATE shopping_cart SET quantity = quantity + 1 WHERE user_id = ? AND product_id = ?";
+        String query = "UPDATE shopping_cart SET quantity = ? WHERE user_id = ? AND product_id = ?";
 
         try(Connection connection = getConnection()) {
 
             PreparedStatement preparedStatement = connection.prepareStatement(query);
 
-            preparedStatement.setInt(1, userId);
-            preparedStatement.setInt(2, productId);
+            preparedStatement.setInt(1, item.getQuantity() + 1);
+            preparedStatement.setInt(2, userId);
+            preparedStatement.setInt(3, productId);
 
             preparedStatement.executeUpdate();
 

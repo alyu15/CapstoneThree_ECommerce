@@ -28,7 +28,7 @@ public class ProfileController {
         this.profileDao = profileDao;
     }
 
-    @GetMapping("{userId}")
+    @GetMapping("")
     public Profile getByUserId(Principal principal) {
 
         try {
@@ -47,7 +47,7 @@ public class ProfileController {
 
     }
 
-    @PutMapping("{userId}")
+    @PutMapping("")
     public void updateProfile(Principal principal, @RequestBody Profile profile) {
 
         try {
