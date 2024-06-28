@@ -126,14 +126,14 @@ is updated within their cart.
 ><details>
 ><summary> Adding a Product to cart </summary>
 >
-> IMAGE HERE
+> ![AddProductToCart](https://github.com/alyu15/CapstoneThree_ECommerce/blob/e904b592fbbbd41a694203521d92814bb09ea801/images/AddingProductToCart.JPG)
 >
 ></details>
 
 ><details>
 ><summary> Adding the Same Product to Cart </summary>
 >
-> IMAGE HERE
+> ![AddSameProductToCart](https://github.com/alyu15/CapstoneThree_ECommerce/blob/e904b592fbbbd41a694203521d92814bb09ea801/images/AddingSameProductToCart.JPG)
 >
 ></details>
 
