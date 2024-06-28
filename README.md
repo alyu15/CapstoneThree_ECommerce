@@ -84,6 +84,10 @@ in their username and password. Once they have successfully logged in, they are 
 
 - Modify their profile details
 - Add products to their shopping cart
+- Clear their shopping cart
+
+If the user selects 'Add to Cart' on a product that already exists inside their shopping cart, the quantity of the item
+is updated within their cart.
 
 ><details>
 ><summary> Logging In </summary>
@@ -120,9 +124,16 @@ in their username and password. Once they have successfully logged in, they are 
 ></details>
 
 ><details>
-><summary> After Adding a Product to cart </summary>
+><summary> Adding a Product to cart </summary>
 >
-> ![AddProductToCart](https://github.com/alyu15/CapstoneThree_ECommerce/blob/01afcd71944ff144b9bf8310a55ffe93d5f6b6ec/images/ShoppingCart.JPG)
+> IMAGE HERE
+>
+></details>
+
+><details>
+><summary> Adding the Same Product to Cart </summary>
+>
+> IMAGE HERE
 >
 ></details>
 
